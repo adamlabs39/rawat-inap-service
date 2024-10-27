@@ -7,7 +7,7 @@ services:
       - 8085:8085
     networks:
       - rawatinap-network
-    environtments:
+    environment:
       REDIS_PASSWORD: ${REDIS_PASSWORD}
       REDIS_USERNAME: ${REDIS_USERNAME}
       REDIS_HOST: ${REDIS_HOST}
