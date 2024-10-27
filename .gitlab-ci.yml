@@ -1,0 +1,22 @@
+stages:
+  - build
+  - deploy
+
+build-image:
+  stage: build
+  before_script:
+    - docker compose dowm --env-file /home/admin/adameds/.env-ranap down --rmi all
+    - echo "@adameds:registry=https://gitlab.com/api/v4/groups/93029767/-/packages/npm/" >> .npmrc
+    - echo "//gitlab.com/api/v4/groups/93029767/-/packages/npm/:_authToken=$AUTH_TOKEN" >> .npmrc
+
+  script:
+    - docker compose build -t rawat-inap:dev ./ --no-cache
+  only:
+    - dev-deployment
+
+deploy-app:
+  stage: deploy
+  script:
+    - docker compose --env-file /home/admin/adameds/.env-ranap up -d
+  only:
+    - dev-deployment

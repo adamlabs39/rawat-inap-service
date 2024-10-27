@@ -1,0 +1,27 @@
+version: "3.8"
+services:
+  rawat-inap-service:
+    container_name: "rawat-inap-service"
+    image: rawat-inap:dev
+    ports:
+      - 8085:8085
+    networks:
+      - rawatinap-network
+    environtments:
+      REDIS_PASSWORD: ${REDIS_PASSWORD}
+      REDIS_USERNAME: ${REDIS_USERNAME}
+      REDIS_HOST: ${REDIS_HOST}
+      REDIS_PORT: ${REDIS_PORT}
+      REDIS_DATABASE: ${REDIS_DATABASE}
+
+      DB_USERNAME: ${DB_USERNAME}
+      DB_PASSWORD: ${DB_PASSWORD}
+      DB_NAME: ${DB_NAME}
+      DB_HOST: ${DB_HOST}
+      DB_PORT: ${DB_PORT}
+      DB_DIALECT: ${DB_DIALECT}
+      DB_POOL: ${DB_POOL}
+      SYNC_DB: ${SYNC_DB}
+networks:
+  rawatinap-network:
+    driver: bridge
