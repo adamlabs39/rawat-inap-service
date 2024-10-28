@@ -10,7 +10,7 @@ build-image:
     - echo "//gitlab.com/api/v4/groups/93029767/-/packages/npm/:_authToken=$AUTH_TOKEN" >> .npmrc
 
   script:
-    - docker build -t rawat-inap:dev ./ --no-cache
+    - docker build -t adameds/rawat-inap:dev ./ --no-cache
   only:
     - dev-deployment
 
