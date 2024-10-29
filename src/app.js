@@ -37,7 +37,7 @@ app.use(errorMiddleware);
 if (process.env.SYNC_DB === "true") {
     try {
         for (const model of MODELMERGE) {
-            await model.sync({ alter: true, force: true });
+            // await model.sync({ alter: true, force: true });
         }
     } catch (error) {
         console.error("Failed to synchronize the database:", error);
