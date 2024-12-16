@@ -4,7 +4,7 @@ services:
       context: ./
       dockerfile: Dockerfile
       no_cache: true
-    container_name: "rawat-inap-service"
+    container_name: rawat-inap-service
     image: adameds/rawat-inap:dev
     ports:
       - 8085:8085
@@ -15,12 +15,6 @@ services:
       SYNC_DB: ${SYNC_DB}
     restart: always
     volumes:
-      - type: bind
-        source: /home/admin/adameds/private.key
-        target: /adameds-rawat-inap/private.key
-      - type: bind
-        source: /home/admin/adameds/public.key
-        target: /adameds-rawat-inap/public.key
       - type: bind
         source: /home/admin/adameds/.env.vault
         target: /adameds-rawat-inap/.env.vault
