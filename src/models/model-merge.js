@@ -1,27 +1,41 @@
-import AddressModel from "./address-model.js";
-import BirthDetailModel from "./birth-detail-model.js";
-import PatientModel from "./patient-model.js";
-import PegawaiModel from "./pegawai-model.js";
-import PerpindahanModel from "./perpindahan-model.js";
-import PractitionerModel from "./practitioner-model.js";
-import RawatInapModel from "./rawat-inap-model.js";
-import RoomMonitoringModel from "./room-monitoring-model.js";
-import KategoriRuanganModel from "./kategori-ruangan-model.js";
-import LokasiModel from "./lokasi-model.js";
-import FaskesModel from "./faskes-model.js";
-import RiwayatRuanganModel from "./riwayat-ruangan-model.js";
-import RuanganModel from "./ruangan-model.js";
+import {
+    AddressModel,
+} from "@adameds/model-sdk/setting";
+
+import {
+    BirthDetailModel,
+    PatientModel,
+} from "@adameds/model-sdk/admisi";
+
+import {
+    PegawaiModel,
+    PractitionerModel,
+    KategoriRuanganModel,
+    LokasiModel,
+    FaskesModel,
+    RuanganModel
+} from "@adameds/model-sdk/datamaster";
+
+import {
+    PerpindahanModel,
+    RawatInapModel,
+    RiwayatRuanganModel
+} from "@adameds/model-sdk/pelayanan";
+
+import {
+    RoomMonitoringModel,
+} from "@adameds/model-sdk/admisi";
 
 const MODELMERGE = [
-    // AddressModel,
-    // BirthDetailModel,
-    // FaskesModel,
-    // KategoriRuanganModel,
-    // LokasiModel,
-    // PatientModel,
-    // PegawaiModel,
-    // PerpindahanModel,
-    // PractitionerModel,
+    AddressModel,
+    BirthDetailModel,
+    FaskesModel,
+    KategoriRuanganModel,
+    LokasiModel,
+    PatientModel,
+    PegawaiModel,
+    PractitionerModel,
+    PerpindahanModel,
     RawatInapModel,
     RiwayatRuanganModel,
     RoomMonitoringModel,

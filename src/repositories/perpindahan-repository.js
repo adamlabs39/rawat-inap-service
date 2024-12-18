@@ -178,7 +178,7 @@ export default class PerpindahanRepository {
                                         as: "pegawai",
                                         required: true,
                                         where: {deletedAt: {[Op.is]: null}},
-                                        attributes: ["first_title", "last_title", "nama", "gender"]
+                                        attributes: ["first_title", "last_title", "name", "gender"]
                                     }
                                 ]
                             },
