@@ -1,18 +1,27 @@
-import RawatInapModel from "../models/rawat-inap-model.js";
 import {Context} from "../middlewares/context.js";
 import {CTX_AUTHOR} from "../constants/context-constant.js";
-import RoomMonitoringModel from "../models/room-monitoring-model.js";
 import NotfoundException from "../exceptions/notfound-exception.js";
-import PerpindahanModel from "../models/perpindahan-model.js";
+import {
+    RawatInapModel,
+    PerpindahanModel
+} from "@adameds/model-sdk/pelayanan";
+import {
+    RoomMonitoringModel,
+    PatientModel,
+    BirthDetailModel
+} from "@adameds/model-sdk/admisi";
+import {
+    AddressModel
+} from "@adameds/model-sdk/setting";
+import {
+    PractitionerModel,
+    PegawaiModel
+} from "@adameds/model-sdk/datamaster";
+
 import moment from "moment";
 import sequelizeInstace from "../configs/sequelize-instance.js";
 import BadRequestException from "../exceptions/bad-request-exception.js";
 import {Op} from "sequelize";
-import PatientModel from "../models/patient-model.js";
-import AddressModel from "../models/address-model.js";
-import BirthDetailModel from "../models/birth-detail-model.js";
-import PractitionerModel from "../models/practitioner-model.js";
-import PegawaiModel from "../models/pegawai-model.js";
 import Pagination from "../helpers/pagination.js";
 import sequelizeInstance from "../configs/sequelize-instance.js";
 export default class PerpindahanRepository {
@@ -169,7 +178,7 @@ export default class PerpindahanRepository {
                                         as: "pegawai",
                                         required: true,
                                         where: {deletedAt: {[Op.is]: null}},
-                                        attributes: ["title", "nama", "gender"]
+                                        attributes: ["first_title", "last_title", "nama", "gender"]
                                     }
                                 ]
                             },
@@ -237,7 +246,6 @@ export default class PerpindahanRepository {
                 });
 
                 if(!perpindahan) throw new NotfoundException("Data tidak ditemukan!");
-                // Update Approval Status
                 const result = await perpindahan.update({
                     statusPindah: "approve"
                 }, { transaction: t });
