@@ -16,7 +16,7 @@ services:
     restart: always
     volumes:
       - type: bind
-        source: /home/admin/adameds/.env.vault
+        source: /home/engineer/adameds/.env.vault
         target: /adameds-rawat-inap/.env.vault
 networks:
   rawatinap-network:
