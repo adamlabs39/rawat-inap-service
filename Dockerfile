@@ -6,4 +6,5 @@ ENV APP_PORT=8085
 ENV APP_HOST=0.0.0.0
 COPY . .
 RUN npm install
-CMD ["npm", "run", "start"]
+RUN npm install -g @infisical/cli
+CMD ["sh", "-c", "infisical run --env=development -- npm run start"]
