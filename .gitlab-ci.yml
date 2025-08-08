@@ -13,14 +13,14 @@ build-deploy:
   only:
     - dev-deployment
 
-build-prod:
+build-staging:
   stage: build-deploy
   tags:
-    - prod-runner
+    - staging
   before_script:
     - echo "@adameds:registry=https://gitlab.com/api/v4/groups/93029767/-/packages/npm/" >> .npmrc
     - echo "//gitlab.com/api/v4/groups/93029767/-/packages/npm/:_authToken=$AUTH_TOKEN" >> .npmrc
   only:
-    - prod-deployment
+    - staging
   script:
-    - docker compose -f prod-compose.yml --env-file /home/gitlab-runner/adameds/.env.ri up --build -d
+    - docker compose --env-file /home/env/.env.ri up --build -d
