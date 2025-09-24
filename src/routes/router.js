@@ -17,6 +17,7 @@ router.get('/transfer-bed/history/:uuid', PerpindahanController.GetHistoryMoveBe
 router.get('/transfer-bed/request/detail/:uuid', PerpindahanController.GetRequestMoveBed);
 router.get('/transfer-bed/total-pending', PerpindahanController.GetTotalPending);
 
+
 //* Reports
 router.get('/report/kunjungan', ReportController.GetAllKunjungan);
 router.get('/report/batal-kunjungan', ReportController.GetCancelKunjungan);
