@@ -15,6 +15,7 @@ export default class ReportRepository {
                 const options = {
                 include: kunjunganReportInclude,
                 attributes: ["no_reg", "no_pelayanan", "tanggal_daftar", "discharge_date", "kondisi_pasien_pulang", "statusPulang"],
+                
                 };
 
                 return await Pagination.init(RawatInapModel, args, filter, options);
