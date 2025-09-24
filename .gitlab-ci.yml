@@ -3,11 +3,24 @@ stages:
 
 build-deploy:
   stage: build-deploy
+  tags:
+    - development
   before_script:
-    - docker compose --env-file /home/admin/adameds/.env-ri down --rmi all
     - echo "@adameds:registry=https://gitlab.com/api/v4/groups/93029767/-/packages/npm/" >> .npmrc
     - echo "//gitlab.com/api/v4/groups/93029767/-/packages/npm/:_authToken=$AUTH_TOKEN" >> .npmrc
   script:
-    - docker compose --env-file /home/admin/adameds/.env-ri up -d
+    - docker compose --env-file /home/env/.env.ri up --build -d
   only:
     - dev-deployment
+
+build-staging:
+  stage: build-deploy
+  tags:
+    - staging
+  before_script:
+    - echo "@adameds:registry=https://gitlab.com/api/v4/groups/93029767/-/packages/npm/" >> .npmrc
+    - echo "//gitlab.com/api/v4/groups/93029767/-/packages/npm/:_authToken=$AUTH_TOKEN" >> .npmrc
+  only:
+    - staging
+  script:
+    - docker compose --env-file /home/env/.env.ri up --build -d

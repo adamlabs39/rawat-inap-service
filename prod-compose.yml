@@ -4,20 +4,20 @@ services:
       context: ./
       dockerfile: Dockerfile
       no_cache: true
-    container_name: api-adameds-rawatinap
+    container_name: rawat-inap-service
     image: adameds/rawat-inap:dev
     ports:
       - 8085:8085
     networks:
       - rawatinap-network
     environment:
-      INFISICAL_TOKEN: ${INFISICAL_TOKEN}
+      DOTENV_KEY: ${DOTENV_KEY}
       SYNC_DB: ${SYNC_DB}
     restart: always
-    # volumes:
-    #   - type: bind
-    #     source: /home/engineer/adameds/.env.vault
-    #     target: /adameds-rawat-inap/.env.vault
+    volumes:
+      - type: bind
+        source: /home/gitlab-runner/adameds/.env.vault
+        target: /adameds-rawat-inap/.env.vault
 networks:
   rawatinap-network:
     driver: bridge
