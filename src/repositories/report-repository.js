@@ -32,7 +32,7 @@ export default class ReportRepository {
 
                 const options = {
                     include: kunjunganReportInclude,
-                    attributes: ["no_reg", "no_pelayanan", "petugas", "alasan_batal", "deletedAt"],
+                    attributes: ["tanggal_daftar", "no_reg", "no_pelayanan", "petugas", "alasan_batal", "deletedAt"],
                 };
 
                 return await Pagination.init(RawatInapModel, args, filter, options);
