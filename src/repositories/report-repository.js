@@ -15,8 +15,18 @@ export default class ReportRepository {
                 const options = {
                 include: kunjunganReportInclude,
                 attributes: ["no_reg", "no_pelayanan", "tanggal_daftar", "discharge_date", "kondisi_pasien_pulang", "status_pulang"],
-
                 };
+
+                if (args.all === "aktif") {
+                    const allData = await RawatInapModel.findAll({
+                        where: filter,
+                        ...options,
+                    });
+
+                    return {
+                        data: allData,
+                    };
+                }
 
                 return await Pagination.init(RawatInapModel, args, filter, options);
             } catch (error) {
@@ -34,6 +44,17 @@ export default class ReportRepository {
                     include: kunjunganReportInclude,
                     attributes: ["tanggal_daftar", "no_reg", "no_pelayanan", "petugas", "alasan_batal", "deletedAt"],
                 };
+
+                if (args.all === "aktif") {
+                    const allData = await RawatInapModel.findAll({
+                        where: filter,
+                        ...options,
+                    });
+
+                    return {
+                        data: allData,
+                    };
+                }
 
                 return await Pagination.init(RawatInapModel, args, filter, options);
             } catch (error) {
