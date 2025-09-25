@@ -15,7 +15,8 @@ import {
 } from "@adameds/model-sdk/setting";
 import {
     PractitionerModel,
-    PegawaiModel
+    PegawaiModel,
+    LokasiModel
 } from "@adameds/model-sdk/datamaster";
 
 import moment from "moment";
@@ -187,34 +188,66 @@ export default class PerpindahanRepository {
                                 as: "monitoring_room",
                                 required: true,
                                 where: { deletedAt: { [Op.is]: null } },
-                                attributes: ["uuid", "room_uuid", "room_category", "room_class", "room", "bed_name", "no_bed"]
+                                attributes: ["uuid", "room_uuid", "no_bed"],
+                                include: [
+                                    {
+                                        model: LokasiModel,
+                                        as: "bed_lokasi",
+                                        required: true,
+                                        where: { deletedAt: { [Op.is]: null } },
+                                        attributes: ["uuid", "code", "name", "class_code", "class_name"],
+                                    },
+                                    {
+                                        model: LokasiModel,
+                                        as: "room",
+                                        required: true,
+                                        where: { deletedAt: { [Op.is]: null } },
+                                        attributes: ["uuid", "code", "name", "class_code", "class_name"],
+                                    }
+                                ]
                             },
                         ]
                     },
                     {
                         model: RoomMonitoringModel,
                         as: "origin_monitoring_room",
-                        attributes: [
-                            ["uuid", "monitoring_room_uuid"],
-                            "room_uuid",
-                            "room_category",
-                            "room_class",
-                            "room",
-                            "bed_name",
-                            "no_bed"
+                        attributes: ["uuid", "room_uuid", "no_bed"],
+                        include: [
+                            {
+                                model: LokasiModel,
+                                as: "bed_lokasi",
+                                required: true,
+                                where: { deletedAt: { [Op.is]: null } },
+                                attributes: ["uuid", "code", "name", "class_code", "class_name"],
+                            },
+                            {
+                                model: LokasiModel,
+                                as: "room",
+                                required: true,
+                                where: { deletedAt: { [Op.is]: null } },
+                                attributes: ["uuid", "code", "name", "class_code", "class_name"],
+                            }
                         ]
                     },
                     {
                         model: RoomMonitoringModel,
                         as: "destination_monitoring_room",
-                        attributes: [
-                            ["uuid", "monitoring_room_uuid"],
-                            "room_uuid",
-                            "room_category",
-                            "room_class",
-                            "room",
-                            "bed_name",
-                            "no_bed"
+                        attributes: ["uuid", "room_uuid", "no_bed"],
+                        include: [
+                            {
+                                model: LokasiModel,
+                                as: "bed_lokasi",
+                                required: true,
+                                where: { deletedAt: { [Op.is]: null } },
+                                attributes: ["uuid", "code", "name", "class_code", "class_name"],
+                            },
+                            {
+                                model: LokasiModel,
+                                as: "room",
+                                required: true,
+                                where: { deletedAt: { [Op.is]: null } },
+                                attributes: ["uuid", "code", "name", "class_code", "class_name"],
+                            }
                         ]
                     }
                 ],
