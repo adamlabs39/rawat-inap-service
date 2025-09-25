@@ -19,7 +19,7 @@ router.get('/transfer-bed/total-pending', PerpindahanController.GetTotalPending)
 
 
 //* Reports
-router.get('/report/kunjungan', ReportController.GetAllKunjungan);
-router.get('/report/batal-kunjungan', ReportController.GetCancelKunjungan);
+router.get('/ranap/report/kunjungan', ReportController.GetAllKunjungan);
+router.get('/ranap/report/batal-kunjungan', ReportController.GetCancelKunjungan);
 
 export default router;
