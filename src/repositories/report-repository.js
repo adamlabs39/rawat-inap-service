@@ -10,12 +10,12 @@ export default class ReportRepository {
     static async getAllKunjungan(args) {
         const { faskesUuid } = Context.get(CTX_AUTHOR);
             try {
-                const filter = commonFilterReport({ faskesUuid, args, options: { discharge_date: { [Op.ne]: null } } });
+                const filter = commonFilterReport({ faskesUuid, args, options: { discharge_date: { [Op.between]: [args.start_date, args.end_date] } } });
 
                 const options = {
                 include: kunjunganReportInclude,
-                attributes: ["no_reg", "no_pelayanan", "tanggal_daftar", "discharge_date", "kondisi_pasien_pulang", "statusPulang"],
-                
+                attributes: ["no_reg", "no_pelayanan", "tanggal_daftar", "discharge_date", "kondisi_pasien_pulang", "status_pulang"],
+
                 };
 
                 return await Pagination.init(RawatInapModel, args, filter, options);
