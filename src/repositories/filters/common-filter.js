@@ -21,7 +21,7 @@ export function commonFilterReport({ faskesUuid, args = {}, options = {} }) {
 
     if (args.room) filter.room = sequelizeInstance.where(sequelizeInstance.col("monitoring_room.room.name") , { [Op.iLike]: `%${args.room || ""}%` });
 
-    if (args.class) filter.class = sequelizeInstance.where(sequelizeInstance.col("monitoring_room.room.class_name"), { [Op.iLike]: `%${args.class || ""}%` });
+    if (args.kelas) filter.kelas = sequelizeInstance.where(sequelizeInstance.col("monitoring_room.room.class_name"), { [Op.iLike]: `%${args.kelas || ""}%` });
 
     return filter;
 }
