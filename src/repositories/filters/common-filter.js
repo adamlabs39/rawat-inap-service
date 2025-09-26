@@ -19,6 +19,10 @@ export function commonFilterReport({ faskesUuid, args = {}, options = {} }) {
 
     if (args.practitioner_uuid) filter.practitionerUuid = args.practitioner_uuid;
 
+    if (args.room) filter.room = sequelizeInstance.where(sequelizeInstance.col("monitoring_room.room.name") , { [Op.iLike]: `%${args.room || ""}%` });
+
+    if (args.class) filter.class = sequelizeInstance.where(sequelizeInstance.col("monitoring_room.room.class_name"), { [Op.iLike]: `%${args.class || ""}%` });
+
     return filter;
 }
 
